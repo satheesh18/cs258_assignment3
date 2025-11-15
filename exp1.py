@@ -1,7 +1,6 @@
 from mininet.net import Mininet
 from mininet.node import Node
 from mininet.link import TCLink
-from mininet.log import setLogLevel
 
 class LinuxRouter(Node):
     def config(self, **params):
@@ -76,5 +75,4 @@ def run():
     net.stop()
 
 if __name__ == '__main__':
-    setLogLevel('info')
     run()
