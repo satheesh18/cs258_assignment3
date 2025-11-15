@@ -1,0 +1,57 @@
+h1 to h3
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=0.714 ms
+
+--- 10.0.0.3 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.714/0.714/0.714/0.000 ms
+h2 to h3
+PING 10.0.0.3 (10.0.0.3) 56(84) bytes of data.
+From 10.0.0.2 icmp_seq=1 Destination Host Unreachable
+
+--- 10.0.0.3 ping statistics ---
+1 packets transmitted, 0 received, +1 errors, 100% packet loss, time 0ms
+
+Script started on 2025-11-15 00:31:39+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="194" LINES="51"]
+[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl show s1[27msudo ovs-ofctl show s1
+[?2004lOFPT_FEATURES_REPLY (xid=0x2): dpid:0000000000000001
+n_tables:254, n_buffers:0
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS ARP_MATCH_IP
+actions: output enqueue set_vlan_vid set_vlan_pcp strip_vlan mod_dl_src mod_dl_dst mod_nw_src mod_nw_dst mod_nw_tos mod_tp_src mod_tp_dst
+ 1(s1-eth1): addr:52:b2:82:21:db:e9
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 2(s1-eth2): addr:36:0f:94:70:54:77
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 3(s1-eth3): addr:c6:39:14:fe:f6:56
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ LOCAL(s1): addr:d2:e3:b4:ea:80:46
+     config:     PORT_DOWN
+     state:      LINK_DOWN
+     speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl dump-flows s1[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl dump-flows s1
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl add-flow s1 in_port=2,actions=drop[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl add-flow s1 in_port=2,actions=drop
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl add-flow s1 in_port=3,actions=output:1[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl add-flow s1 in_port=3,actions=output:1
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl add-flow s1 in_port=1,actions=output:3[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl add-flow s1 in_port=1,actions=output:3
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl add-flow s2 in_port=1,actions=output:2[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl add-flow s2 in_port=1,actions=output:2
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ [7msudo ovs-ofctl add-flow s2 in_port=2,actions=output:1[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo ovs-ofctl add-flow s2 in_port=2,actions=output:1
+[?2004l[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ sudo ovs-ofctl add-flow s2 in_port=2,actions=output:11,actions=output:21 in_port=1,actions=output:33,actions=output:1[4P2,actions=drop[21Pdump-flows s1
+[?2004l cookie=0x0, duration=23.669s, table=0, n_packets=1, n_bytes=70, in_port="s1-eth2" actions=drop
+ cookie=0x0, duration=18.051s, table=0, n_packets=0, n_bytes=0, in_port="s1-eth3" actions=output:"s1-eth1"
+ cookie=0x0, duration=12.751s, table=0, n_packets=0, n_bytes=0, in_port="s1-eth1" actions=output:"s1-eth3"
+[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ sudo ovs-ofctl dump-flows s1[K2
+[?2004l cookie=0x0, duration=9.377s, table=0, n_packets=0, n_bytes=0, in_port="s2-eth1" actions=output:"s2-eth2"
+ cookie=0x0, duration=4.140s, table=0, n_packets=1, n_bytes=70, in_port="s2-eth2" actions=output:"s2-eth1"
+[?2004h]0;ubuntu@climbing-vicuna: ~[01;32mubuntu@climbing-vicuna[00m:[01;34m~[00m$ exit
+[?2004lexit
+
+Script done on 2025-11-15 00:33:19+00:00 [COMMAND_EXIT_CODE="0"]
