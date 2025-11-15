@@ -1,6 +1,7 @@
 from mininet.net import Mininet
 from mininet.node import OVSKernelSwitch
 from mininet.link import TCLink
+from mininet.log import setLogLevel
 
 def run():
     net = Mininet(link=TCLink, switch=OVSKernelSwitch)
@@ -49,4 +50,5 @@ def run():
     net.stop()
 
 if __name__ == '__main__':
+    setLogLevel('info')
     run()
